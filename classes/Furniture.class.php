@@ -7,8 +7,8 @@ class Furniture extends AbstractProduct {
     private $width;
     private $length;
 
-    public function __construct($sku, $name, $price,  $type, $height, $width, $length) {
-        parent::__construct($sku, $name, $price, $type);
+    public function __construct($sku, $name, $price, $height, $width, $length) {
+        parent::__construct($sku, $name, $price);
         $this->height = $height;
         $this->width = $width;
         $this->length = $length;

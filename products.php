@@ -16,28 +16,32 @@ $height = $_POST['height']?$_POST['height']:null;
 $width = $_POST['width']?$_POST['width']:null;
 $length = $_POST['length']?$_POST['length']:null;
 
-// $dvd = new DVD($sku, $name, $price, $type, $size);
-// $book = new Book($sku, $name, $price, $type, $weight);
-// $furniture = new Furniture($sku, $name, $price, $type, $height, $width, $length);
-
-$productData = [
-    'sku' => $sku,
-    'name' => $name,
-    'price' => $price,
-];
+$dvd = new DVD($sku, $name, $price, $size);
+$book = new Book($sku, $name, $price, $weight);
+$furniture = new Furniture($sku, $name, $price, $height, $width, $length);
+$productData = [];
 
 // Use a switch statement to handle different product types
 switch ($type) {
     case 'Dvd':
-        $productData['size'] = $size;
+        $productData['sku'] = $dvd->getSKU();
+        $productData['name'] = $dvd->getName();
+        $productData['price'] = $dvd->getPrice();
+        $productData['size'] = $dvd->getSize();
         break;
     case 'Book':
-        $productData['weight'] = $weight;
+        $productData['sku'] = $book->getSKU();
+        $productData['name'] = $book->getName();
+        $productData['price'] = $book->getPrice();
+        $productData['weight'] = $book->getWeight();
         break;
     case 'Furniture':
-        $productData['height'] = $height;
-        $productData['width'] = $width;
-        $productData['length'] = $length;
+        $productData['sku'] = $furniture->getSKU();
+        $productData['name'] = $furniture->getName();
+        $productData['price'] = $furniture->getPrice();
+        $productData['height'] = $furniture->getHeight();
+        $productData['width'] = $furniture->getWidth();
+        $productData['length'] = $furniture->getLength();
         break;
     default:
         // Handle any other product types or errors here

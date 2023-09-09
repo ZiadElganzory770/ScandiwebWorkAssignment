@@ -26,13 +26,13 @@
 
             switch($type){
                 case 'Dvd':
-                    $sql = "INSERT INTO dvd (sku, name, price, size) VALUES (:sku, :name, :price, :size)";
+                    $sql = "INSERT INTO dvd_products (sku, name, price, size) VALUES (:sku, :name, :price, :size)";
                     break;
                 case 'Book':
-                    $sql = "INSERT INTO book (sku, name, price, weight) VALUES (:sku, :name, :price, :weight)";
+                    $sql = "INSERT INTO book_products (sku, name, price, weight) VALUES (:sku, :name, :price, :weight)";
                     break;
                 case 'Furniture':
-                    $sql = "INSERT INTO furniture (sku, name, price, height, width, length) VALUES (:sku, :name, :price, :height, :width, :length)";
+                    $sql = "INSERT INTO furniture_products (sku, name, price, height, width, length) VALUES (:sku, :name, :price, :height, :width, :length)";
                     break;
                 default:
                     return false;

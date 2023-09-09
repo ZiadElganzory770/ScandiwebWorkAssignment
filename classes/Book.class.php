@@ -4,8 +4,8 @@ namespace classes;
 class Book extends AbstractProduct {
     private $weight;
 
-    public function __construct($sku, $name, $price,  $type, $weight) {
-        parent::__construct($sku, $name, $price, $type);
+    public function __construct($sku, $name, $price, $weight) {
+        parent::__construct($sku, $name, $price);
         $this->weight = $weight;
     }
 

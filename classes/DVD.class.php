@@ -4,8 +4,8 @@ namespace classes;
 class DVD extends AbstractProduct {
     private $size;
 
-    public function __construct($sku, $name, $price, $type, $size) {
-        parent::__construct($sku, $name, $price, $type);
+    public function __construct($sku, $name, $price,$size) {
+        parent::__construct($sku, $name, $price);
         $this->size = $size;
     }
 
