@@ -13,11 +13,25 @@
         }
 
         public function getAllData(){
-            $sql = 'SELECT * FROM products ORDER BY id';
-            $stmt = $this->dbConn->prepare($sql);
-            $stmt->execute();
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $data;
+            $sqlDvd = "SELECT * FROM dvd_products";
+            $sqlBook = "SELECT * FROM book_products";
+            $sqlFurniture = "SELECT * FROM furniture_products";
+
+            $stmtDvd = $this->dbConn->prepare($sqlDvd);
+            $stmtBook = $this->dbConn->prepare($sqlBook);
+            $stmtFurniture = $this->dbConn->prepare($sqlFurniture);
+
+            $stmtDvd->execute();
+            $stmtBook->execute();
+            $stmtFurniture->execute();
+
+            $dvdData = $stmtDvd->fetchAll(\PDO::FETCH_ASSOC);
+            $bookData = $stmtBook->fetchAll(\PDO::FETCH_ASSOC);
+            $furnitureData = $stmtFurniture->fetchAll(\PDO::FETCH_ASSOC);
+
+            // Combine the data from all tables into one array
+            $products = array_merge($dvdData, $bookData, $furnitureData);
+            return $products;
         }
 
         public function addProduct($arr){
@@ -26,13 +40,13 @@
 
             switch($type){
                 case 'Dvd':
-                    $sql = "INSERT INTO dvd_products (sku, name, price, size) VALUES (:sku, :name, :price, :size)";
+                    $sql = "INSERT INTO dvd_products (sku, name, price, size, type) VALUES (:sku, :name, :price, :size, :type)";
                     break;
                 case 'Book':
-                    $sql = "INSERT INTO book_products (sku, name, price, weight) VALUES (:sku, :name, :price, :weight)";
+                    $sql = "INSERT INTO book_products (sku, name, price, weight, type) VALUES (:sku, :name, :price, :weight, :type)";
                     break;
                 case 'Furniture':
-                    $sql = "INSERT INTO furniture_products (sku, name, price, height, width, length) VALUES (:sku, :name, :price, :height, :width, :length)";
+                    $sql = "INSERT INTO furniture_products (sku, name, price, height, width, length, type) VALUES (:sku, :name, :price, :height, :width, :length, :type)";
                     break;
                 default:
                     return false;
@@ -49,12 +63,15 @@
         
                     if ($type === 'Dvd') {
                         $stmt->bindParam(':size', $product['size']);
+                        $stmt->bindParam(':type', $product['type']);
                     } elseif ($type === 'Book') {
                         $stmt->bindParam(':weight', $product['weight']);
+                        $stmt->bindParam(':type', $product['type']);
                     } elseif ($type === 'Furniture') {
                         $stmt->bindParam(':height', $product['height']);
                         $stmt->bindParam(':width', $product['width']);
                         $stmt->bindParam(':length', $product['length']);
+                        $stmt->bindParam(':type', $product['type']);
                     }
         
                     // Execute the prepared statement for the current product

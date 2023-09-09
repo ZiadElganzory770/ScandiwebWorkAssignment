@@ -28,12 +28,14 @@ switch ($type) {
         $productData['name'] = $dvd->getName();
         $productData['price'] = $dvd->getPrice();
         $productData['size'] = $dvd->getSize();
+        $productData['type'] = $type;
         break;
     case 'Book':
         $productData['sku'] = $book->getSKU();
         $productData['name'] = $book->getName();
         $productData['price'] = $book->getPrice();
         $productData['weight'] = $book->getWeight();
+        $productData['type'] = $type;
         break;
     case 'Furniture':
         $productData['sku'] = $furniture->getSKU();
@@ -42,6 +44,7 @@ switch ($type) {
         $productData['height'] = $furniture->getHeight();
         $productData['width'] = $furniture->getWidth();
         $productData['length'] = $furniture->getLength();
+        $productData['type'] = $type;
         break;
     default:
         // Handle any other product types or errors here
