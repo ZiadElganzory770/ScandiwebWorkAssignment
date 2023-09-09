@@ -1,8 +1,9 @@
 <?php
-    require_once 'bootstrap.php';
-    
+    namespace classes;
+
     use interface\productsInterface;
 
+    require_once 'includes/Autoloader.php';
 
     class products implements productsInterface{
         private $dbConn;
@@ -20,19 +21,50 @@
         }
 
         public function addProduct($arr){
+            $type = key($arr);
+            $sql = '';
+
+            switch($type){
+                case 'Dvd':
+                    $sql = "INSERT INTO dvd (sku, name, price, size) VALUES (:sku, :name, :price, :size)";
+                    break;
+                case 'Book':
+                    $sql = "INSERT INTO book (sku, name, price, weight) VALUES (:sku, :name, :price, :weight)";
+                    break;
+                case 'Furniture':
+                    $sql = "INSERT INTO furniture (sku, name, price, height, width, length) VALUES (:sku, :name, :price, :height, :width, :length)";
+                    break;
+                default:
+                    return false;
+                }
+
             // Create a prepared statement to insert data into the 'products' table
-            $stmt = $this->dbConn->prepare("INSERT INTO products ( sku, name, price, size, height, width, length, weight ) 
-            VALUES (:sku , :name , :price , :size , :height , :width , :length , :weight)");
-            $stmt->bindParam(':sku',$arr['sku']);
-            $stmt->bindParam(':name',$arr['name']);
-            $stmt->bindParam(':price',$arr['price']);
-            $stmt->bindParam(':size',$arr['size']);
-            $stmt->bindParam(':height',$arr['height']);
-            $stmt->bindParam(':width',$arr['width']);
-            $stmt->bindParam(':length',$arr['length']);
-            $stmt->bindParam(':weight',$arr['weight']);
+            $stmt = $this->dbConn->prepare($sql);
+            if($stmt){
+                foreach ($arr[$type] as $product) {
+                    // Bind parameters for each product
+                    $stmt->bindParam(':sku', $product['sku']);
+                    $stmt->bindParam(':name', $product['name']);
+                    $stmt->bindParam(':price', $product['price']);
+        
+                    if ($type === 'Dvd') {
+                        $stmt->bindParam(':size', $product['size']);
+                    } elseif ($type === 'Book') {
+                        $stmt->bindParam(':weight', $product['weight']);
+                    } elseif ($type === 'Furniture') {
+                        $stmt->bindParam(':height', $product['height']);
+                        $stmt->bindParam(':width', $product['width']);
+                        $stmt->bindParam(':length', $product['length']);
+                    }
+        
+                    // Execute the prepared statement for the current product
+                    $stmt->execute();
+                }
+                return true;
+            }else {
+                return false;
+            }
             // Execute the prepared statement
-            $stmt->execute();
         }
     }
 ?>

@@ -1,9 +1,9 @@
 <?php
-// namespace classes;
-require_once 'bootstrap.php';
+namespace classes;
+require_once 'includes/Autoloader.php';
 
 use interface\configInterface;
-
+use \PDO;
 
 class config implements configInterface{
   private $servername ;

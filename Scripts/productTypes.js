@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('#dvd-fields').hide();
     $('#book-fields').hide();
     $('#furniture-fields').hide();
-    const $dropdown = $('#productType')
+    const $dropdown = $('#productType');
     const $tables = $('.product-table');
     
     $dropdown.change(function(event){
