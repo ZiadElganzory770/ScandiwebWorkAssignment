@@ -41,7 +41,7 @@
             echo '<input type="checkbox" class="input"/>';
             echo '<p>' . $product['sku'] . '</p>';
             echo '<p>' . $product['name'] . '</p>';
-            echo '<p>' . $product['price'] . '</p>';
+            echo '<p>' . $product['price'].'$' . '</p>';
             
             // Output additional fields based on the product type
             if ($product['type'] === 'Dvd') {
