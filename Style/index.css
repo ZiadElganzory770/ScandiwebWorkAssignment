@@ -1,0 +1,62 @@
+  body{
+    margin: 0px;
+    font-size: 17px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+  
+  .container{
+  text-align: center;
+  }
+
+
+
+  .header h1{
+    margin-left: 37px;
+    height: 42px;
+    width: 250px;
+  }
+  .buttons{
+    margin-left: 1701px;
+    margin-top: -35px;
+    width: 450px;
+    position: absolute;
+  }
+
+  .buttons a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .buttons a:active{
+    background-color: black;
+    color: white;
+  }
+
+  .card{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    border: 2px solid black;
+    width: 240px;
+    margin: 20px;
+    padding: 51px;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .delete-checkbox{
+    margin-right: 224px;
+  }
+
+  .btn{
+    border: 2px solid black;
+    background-color: white;
+    margin: 0px 4px;
+    padding: 0px 7px;
+    font-size: 19px;
+  }
+
+  .btn:active{
+    background-color: black;
+    color: white;
+  }

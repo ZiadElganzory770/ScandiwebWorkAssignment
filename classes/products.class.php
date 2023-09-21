@@ -34,6 +34,32 @@
             return $products;
         }
 
+
+        public function deleteProducts($productIds) {
+            if (empty($productIds)) {
+                return;
+            }
+            
+            foreach($productIds as $value){
+                switch($value[1]){
+                    case 'Dvd':
+                        $sql = 'DELETE FROM dvd_products WHERE sku ="'.$value[0].'"';
+                        break;
+                    case 'Book':
+                        $sql = 'DELETE FROM book_products WHERE sku ="'.$value[0].'"';                        break;
+                    case 'Furniture':
+                        $sql = 'DELETE FROM furniture_products WHERE sku ="'.$value[0].'"';                        break;
+                        break;
+                    default:
+                        return false;
+                    }
+            }
+            // Prepare the SQL statement for deleting products based on IDs
+            $stmt = $this->dbConn->prepare($sql);
+            $stmt->execute();
+        }
+
+
         public function addProduct($arr){
             $type = key($arr);
             $sql = '';

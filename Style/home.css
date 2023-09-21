@@ -1,8 +1,64 @@
-  .card{
-    border: 2px solid black; /* Black border */
-    width: 100px; /* Set a fixed width for the cards */
-    margin: 10px; /* Add spacing between cards */
-    padding: 10px; /* Add padding inside the cards */
-    display: inline-block; /* Display cards side by side */
-    vertical-align: top; /* Align cards to the top */
+body{
+    margin: 0px;
+    font-size: 17px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+
+h1{
+    margin-left: 37px;
+    height: 42px;
+    width: 250px;
+}
+
+.buttons{
+    margin-left: 1701px;
+    margin-top: -35px;
+    width: 450px;
+    position: absolute;
+  }
+  .btn{
+    border: 2px solid black;
+    background-color: white;
+    margin: 0px 4px;
+    padding: 0px 7px;
+    font-size: 19px;
+  }
+  .btn:active{
+    background-color: black;
+    color: white;
+  }
+
+  .main{
+    margin: 46px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+  }
+
+  #productType{
+
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  #productType:focus{
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .inputs{
+    margin: 13px 4px;
+  font-size: 21px;
+  }
+
+  label{
+    margin: 0 10px 0 0;
+  }
+
+  footer{
+    text-align: center;
+    position: relative;
   }
