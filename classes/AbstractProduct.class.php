@@ -8,11 +8,12 @@ abstract class AbstractProduct {
     protected $price;
     protected $type;
 
-    public function __construct($sku,$name,$price)
+    public function __construct($sku,$name,$price,$type)
     {
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
+        $this->type = $type;
 
     }
 
@@ -40,12 +41,15 @@ abstract class AbstractProduct {
         return $this->price;
     }
 
-
-    public abstract function getSpecificAttribute();
-
-    public function display(){
-        return "SKU: {$this->sku}, Name: {$this->name}, Price: {$this->price}," . $this->getSpecificAttribute();
+    public function setType($type){
+        $this->type = $type;
     }
+
+    public function getType(){
+        return $this->type;
+    }
+
+    public abstract function display();
     
 }
 

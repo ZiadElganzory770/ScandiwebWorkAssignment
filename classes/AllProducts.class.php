@@ -1,17 +1,35 @@
 <?php
-
 namespace classes;
 
-class Furniture extends AbstractProduct {
+class AllProducts extends AbstractProduct {
+    private $size;
+    private $weight;
     private $height;
     private $width;
     private $length;
 
-    public function __construct($sku, $name, $price, $type, $height, $width, $length) {
-        parent::__construct($sku, $name, $price, $type);
+    public function __construct($sku, $name, $price, $type, $size, $weight, $height, $width, $length) {
+        parent::__construct($sku, $name, $price ,$type);
+        $this->size = $size;
+        $this->weight = $weight;
         $this->height = $height;
         $this->width = $width;
         $this->length = $length;
+    }
+    public function getSize() {
+        return $this->size;
+    }
+
+    public function setSize($size) {
+        $this->size = $size;
+    }
+
+    public function getWeight() {
+        return $this->weight;
+    }
+
+    public function setWeight($weight) {
+        $this->weight = $weight;
     }
 
     public function getHeight() {
@@ -39,14 +57,6 @@ class Furniture extends AbstractProduct {
     }
 
     public function display() {
-        echo '<div class="card">';
-        echo '<input type="checkbox" name="delete-checkbox[]" value="'.$this->sku.'"class="delete-checkbox"/>';
-        echo '<p>' . $this->sku . '</p>';
-        echo '<p>' . $this->name . '</p>';
-        echo '<p>' .$this->price.'$' . '</p>';
-        echo '<p>Dimensions: ' . $this->height .'x'.$this->width.'x'.$this->length .' MB'. '</p>';
-        echo '</div>'; 
     }
 }
-
 ?>

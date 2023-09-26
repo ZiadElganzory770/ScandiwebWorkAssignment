@@ -1,6 +1,5 @@
 <?php
 namespace classes;
-require_once 'includes/Autoloader.php';
 
 use interface\configInterface;
 use \PDO;
@@ -15,7 +14,7 @@ class config implements configInterface{
    $this->servername = "localhost";
    $this->username = "root";
    $this->password = "";
-   $this->dbname = "scandiweb";
+   $this->dbname = "scanditest";
   }
 
   function connect(){
